@@ -1,0 +1,18 @@
+
+-- Requete pour afficher les nationalités et les agencees 
+SELECT
+  DISTINCT number,
+  customer_nationality,
+  travel_agency,
+FROM `my-first-projet-408412.Hotel.hotel` 
+WHERE customer_nationality IS NOT NULL
+  AND travel_agency IS NOT NULL
+
+--Requete pour déterminer l'Anticipations
+SELECT
+  COUNT (DISTINCT number) AS reservations,
+  SUM(anticipation) AS nombre_de_jours,
+  FORMAT_DATE('%b-%Y', created) AS mois_et_annee
+FROM `my-first-projet-408412.Hotel.Ant`
+GROUP BY mois_et_annee
+ORDER BY mois_et_annee
